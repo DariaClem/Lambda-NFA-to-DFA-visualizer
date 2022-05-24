@@ -3,6 +3,23 @@ import cv2
 import numpy as np
 from math import ceil
 import os
+import glob
+
+nrRandare = 0
+f = graphviz.Digraph(directory='imagini', filename=f'{nrRandare}', format="png", )
+f.attr(rankdir='LR', size='20')
+
+
+def stareFinala(stare):
+    stari = generare(stare)
+    ok = 1
+    for valoare in stari:
+        # daca starea este compusa dintr-o stare finala va fi incercuita de 2 ori
+        if stariFinale[valoare] == 1:
+            return 1
+    # daca starea nu are in componenta sa nicio stare finala o vom incercui o singura data
+    return 0
+
 
 # functia transforma un set intr-un string de forma lista sortata pentru notarea noilor stari compuse
 def denumire(lista):
@@ -36,6 +53,22 @@ def parcurgere(stareCurenta, simbol, vizitat, drum):
 
 # functia construieste DFA-ul
 def dfs(stareCurenta):
+    global nrRandare
+    if (stareCurenta == stareInitialaDfa):
+        if (stareFinala(stareCurenta)):
+            f.attr('node', shape='doublecircle')
+        else:
+            f.attr('node', shape='circle')
+        f.node(stareCurenta)
+        f.attr('node', shape='none')
+        f.node('')
+        f.edge('', f'{stareCurenta}')
+    else:
+        if (stareFinala(stareCurenta)):
+            f.attr('node', shape='doublecircle')
+        else:
+            f.attr('node', shape='circle')
+        f.node(stareCurenta)
     # adaug in lista verificare stareCurenta pentru a ma asigura ca nu voi intra intr-o bucla infinita ulterior
     verificare.append(stareCurenta)
     # parcurg lista de tranzitii posibile
@@ -64,6 +97,13 @@ def dfs(stareCurenta):
         else:
             stariDfa[stareCurenta][tranzitie] = stareNoua
         # daca starea obtinuta nu a mai fost generata pana acum apelez functia dfs pentru ea
+        if (stareFinala(stareNoua)):
+            f.attr('node', shape='doublecircle')
+        else:
+            f.attr('node', shape='circle')
+        f.edge(stareCurenta, stareNoua, label=tranzitie)
+        f.render(filename=f'{nrRandare}')
+        nrRandare += 1
         if stareNoua not in verificare:
             dfs(stareNoua)
 
@@ -142,31 +182,35 @@ simbolTranzitii.remove('#')
 
 dfs(stareInitialaDfa)
 
-# vizualizarea automatului final
-f = graphviz.Digraph(format="png")
-f.attr(rankdir='LR', size='20')
-for stare in stariDfa:
-    stari = generare(stare)
-    ok = 1
-    for valoare in stari:
-        # daca starea este compusa dintr-o stare finala va fi incercuita de 2 ori
-        if stariFinale[valoare] == 1:
-            f.attr('node', shape='doublecircle')
-            f.node(stare)
-            ok = 0
-            break
-    # daca starea nu are in componenta sa nicio stare finala o vom incercui o singura data
-    if ok == 1:
-        f.attr('node', shape='circle')
-        f.node(stare)
-# realizez tranzitiile
-for stare in stariDfa:
-    for tranzitie in stariDfa[stare]:
-        f.edge(stare, stariDfa[stare][tranzitie], label=f'{tranzitie}')
+dst = "./imagini/"  # Images destination
+imagini = [f for f in os.listdir('./imagini') if f.endswith('.png')]
+imagini.sort(key=lambda x: int(x.split('.')[0]))
+lungime = len(imagini)
 
-# marchez starea initiala
-f.attr('node', shape='none')
-f.node('')
-f.edge('', f'{stareInitialaDfa}')
+rezultat = np.zeros((360, 360, 3), np.uint8)
+i = 0
 
-f.view()
+a = 1.0  # alpha
+b = 0.0  # beta
+img = cv2.imread(dst + imagini[i])
+img = cv2.resize(img, (360, 360))
+
+# Slide Show Loop
+while (i + 1 < lungime):
+
+    if (ceil(a) == 0):
+        a = 1.0
+        b = 0.0
+        i += 1  # Getting new image from directory
+        img = cv2.imread(dst + imagini[i])
+        img = cv2.resize(img, (360, 360))
+
+    a -= 0.01
+    b += 0.01
+
+    # Image Transition from one to another
+    rezultat = cv2.addWeighted(rezultat, a, img, b, 0)
+    cv2.imshow("Slide Show", rezultat)
+    key = cv2.waitKey(1) & 0xff
+    if key == ord('q'):
+        break
