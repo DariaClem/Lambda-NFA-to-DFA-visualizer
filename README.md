@@ -13,32 +13,18 @@ număr stări finale, stări finale
 Exemplu:
 
 11 12 </br>
-0 1 #
-
-1 2 #
-
-2 3 a
-
-3 6 #
-
-6 7 #
-
-7 8 a
-
-8 9 b
-
-9 10 b
-
-1 4 #
-
-4 5 b
-
-5 6 #
-
-0 7 #
-
-0
-
-1 10
-
+0 1 # </br>
+1 2 # </br>
+2 3 a </br>
+3 6 # </br>
+6 7 # </br>
+7 8 a </br>
+8 9 b </br>
+9 10 b </br>
+1 4 # </br>
+4 5 b </br>
+5 6 # </br>
+0 7 # </br>
+0 </br>
+1 10 </br>
 Simbol pentru lambda este #, în consecință acesta nu poate fi folosit ca simbol de tranziție cu altă semnificație.
