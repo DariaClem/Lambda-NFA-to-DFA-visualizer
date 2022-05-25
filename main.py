@@ -181,32 +181,6 @@ simbolTranzitii.remove('#')
 
 dfs(stareInitialaDfa)
 
-"""
-dst = "./imagini/"  # Images destination
-imagini = [f for f in os.listdir('./imagini') if f.endswith('.png')]
-imagini.sort(key=lambda x: int(x.split('.')[0]))
-lungime = len(imagini)
-
-i = 0
-
-img = cv2.imread(dst + imagini[i])
-inaltime = 600
-img = cv2.imread(dst + imagini[i])
-dim = (int((inaltime / img.shape[0]) * img.shape[1]), inaltime)
-img = cv2.resize(img, dim)
-cv2.imshow("Slide Show", img)
-key = cv2.waitKey(1000)
-
-while (i + 1 < lungime):
-    i += 1
-    img = cv2.imread(dst + imagini[i])
-    dim = (int((inaltime / img.shape[0]) * img.shape[1]), inaltime)
-    img = cv2.resize(img, dim)
-    cv2.imshow("Slide Show", img)
-    key = cv2.waitKey(1000)
-    if key == ord('q'):
-        break"""
-
 imagini = [f for f in os.listdir('./imagini') if f.endswith('.png')]
 imagini.sort(key=lambda x: int(x.split('.')[0]))
 
@@ -226,4 +200,5 @@ for imagine in imagini:
     if dimensiune[0] != img.shape[1] and dimensiune[1] != img.shape[0]:
         img = cv2.resize(img, dimensiune)
     videoclip.write(img)
+
 videoclip.release()
