@@ -12,8 +12,7 @@ număr stări finale, stări finale
 
 Exemplu:
 
-11 12
-
+11 12 </br>
 0 1 #
 
 1 2 #
