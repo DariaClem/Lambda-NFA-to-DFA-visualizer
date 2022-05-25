@@ -7,7 +7,7 @@ import glob
 
 nrRandare = 0
 f = graphviz.Digraph(directory='imagini', filename=f'{nrRandare}', format="png")
-f.attr(rankdir='LR', size='20', ratio="1", dpi="100")
+f.attr(rankdir='LR', size='20', ratio="1")
 
 
 def stareFinala(stare):
@@ -184,6 +184,7 @@ simbolTranzitii.remove('#')
 
 dfs(stareInitialaDfa)
 
+"""
 dst = "./imagini/"  # Images destination
 imagini = [f for f in os.listdir('./imagini') if f.endswith('.png')]
 imagini.sort(key=lambda x: int(x.split('.')[0]))
@@ -207,4 +208,25 @@ while (i + 1 < lungime):
     cv2.imshow("Slide Show", img)
     key = cv2.waitKey(1000)
     if key == ord('q'):
-        break
+        break"""
+
+imagini = [f for f in os.listdir('./imagini') if f.endswith('.png')]
+imagini.sort(key=lambda x: int(x.split('.')[0]))
+
+fps = 1
+dimensiune = None
+for imagine in imagini:
+    img = cv2.imread('./imagini/' + imagine)
+    dimensiune = img.shape[1], img.shape[0]
+format = "XVID"
+
+fourcc = cv2.VideoWriter_fourcc(*format)
+videoclip = None
+for imagine in imagini:
+    img = cv2.imread('./imagini/' + imagine)
+    if videoclip is None:
+        videoclip = cv2.VideoWriter('videoclip.avi', fourcc, fps, dimensiune)
+    if dimensiune[0] != img.shape[1] and dimensiune[1] != img.shape[0]:
+        img = cv2.resize(img, dimensiune)
+    videoclip.write(img)
+videoclip.release()
