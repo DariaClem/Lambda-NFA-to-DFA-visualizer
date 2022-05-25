@@ -6,8 +6,8 @@ import os
 import glob
 
 nrRandare = 0
-f = graphviz.Digraph(directory='imagini', filename=f'{nrRandare}', format="png", )
-f.attr(rankdir='LR', size='20')
+f = graphviz.Digraph(directory='imagini', filename=f'{nrRandare}', format="png")
+f.attr(rankdir='LR', size='20', ratio="1", dpi="100")
 
 
 def stareFinala(stare):
@@ -63,6 +63,8 @@ def dfs(stareCurenta):
         f.attr('node', shape='none')
         f.node('')
         f.edge('', f'{stareCurenta}')
+        f.render(filename=f'{nrRandare}')
+        nrRandare += 1
     else:
         if (stareFinala(stareCurenta)):
             f.attr('node', shape='doublecircle')
@@ -187,30 +189,22 @@ imagini = [f for f in os.listdir('./imagini') if f.endswith('.png')]
 imagini.sort(key=lambda x: int(x.split('.')[0]))
 lungime = len(imagini)
 
-rezultat = np.zeros((360, 360, 3), np.uint8)
 i = 0
 
-a = 1.0  # alpha
-b = 0.0  # beta
 img = cv2.imread(dst + imagini[i])
-img = cv2.resize(img, (360, 360))
+inaltime = 600
+img = cv2.imread(dst + imagini[i])
+dim = (int((inaltime / img.shape[0]) * img.shape[1]), inaltime)
+img = cv2.resize(img, dim)
+cv2.imshow("Slide Show", img)
+key = cv2.waitKey(1000)
 
-# Slide Show Loop
 while (i + 1 < lungime):
-
-    if (ceil(a) == 0):
-        a = 1.0
-        b = 0.0
-        i += 1  # Getting new image from directory
-        img = cv2.imread(dst + imagini[i])
-        img = cv2.resize(img, (360, 360))
-
-    a -= 0.01
-    b += 0.01
-
-    # Image Transition from one to another
-    rezultat = cv2.addWeighted(rezultat, a, img, b, 0)
-    cv2.imshow("Slide Show", rezultat)
-    key = cv2.waitKey(1) & 0xff
+    i += 1
+    img = cv2.imread(dst + imagini[i])
+    dim = (int((inaltime / img.shape[0]) * img.shape[1]), inaltime)
+    img = cv2.resize(img, dim)
+    cv2.imshow("Slide Show", img)
+    key = cv2.waitKey(1000)
     if key == ord('q'):
         break
