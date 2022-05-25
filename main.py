@@ -1,9 +1,6 @@
 import graphviz
 import cv2
-import numpy as np
-from math import ceil
 import os
-import glob
 
 nrRandare = 0
 f = graphviz.Digraph(directory='imagini', filename=f'{nrRandare}', format="png")
