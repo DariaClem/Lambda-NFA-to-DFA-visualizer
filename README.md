@@ -10,7 +10,7 @@ stare inițială
 
 număr stări finale, stări finale
 
-Exemplu:
+Exemplu:</br>
 11 12 </br>
 0 1 # </br>
 1 2 # </br>
