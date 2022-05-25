@@ -28,3 +28,5 @@ Exemplu:</br>
 1 10 </br>
 
 Simbol pentru lambda este #, în consecință acesta nu poate fi folosit ca simbol de tranziție cu altă semnificație.
+
+La rularea codului se va creea un folder cu imagini ce surprind tranzițiile pas cu pas, iar în folderul în care se găsește main.py se va salva și un videoclip cu denumirea 'videoclip.avi' ce reprezintă un slideshow cu toate imaginile generate.
