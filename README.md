@@ -11,7 +11,6 @@ stare inițială
 număr stări finale, stări finale
 
 Exemplu:
-
 11 12 </br>
 0 1 # </br>
 1 2 # </br>
@@ -27,4 +26,5 @@ Exemplu:
 0 7 # </br>
 0 </br>
 1 10 </br>
+
 Simbol pentru lambda este #, în consecință acesta nu poate fi folosit ca simbol de tranziție cu altă semnificație.
