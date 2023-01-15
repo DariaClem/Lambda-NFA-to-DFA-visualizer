@@ -8,10 +8,11 @@ The symbol for lambda is #, therefore it cannot be used as a transition symbol w
 When running the code, a folder with images capturing the step-by-step transitions will be created, and in the folder where main.py is found, a video called 'videoclip.avi' will be saved, which represents a slideshow with all the generated images.
 
 ## How to run 
-In order to run this program, you will have to install some packages:
+In order to run this program, you will have to install 2 packages:
 
 ``` python
 pip install opencv-python
+pip install graphviz
 ```
 
 ## How to write the input
@@ -49,6 +50,6 @@ _Input_
 0
 1 10
 ```
-
 _Output_
-``` python
+
+The result can be seen in videoclip.avi.
