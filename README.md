@@ -53,6 +53,3 @@ _Input_
 _Output_
 
 The result can be seen in videoclip.avi.
-
-https://user-images.githubusercontent.com/91901282/212570851-c903efb3-cd05-4ea4-a0fe-14875f443a27.mp4
-
