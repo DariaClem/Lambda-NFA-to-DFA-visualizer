@@ -53,3 +53,4 @@ _Input_
 _Output_
 
 The result can be seen in videoclip.avi.
+![Videoclip](Videoclip.avi)
