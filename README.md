@@ -55,4 +55,3 @@ _Output_
 The result can be seen in videoclip.avi.
 
 https://user-images.githubusercontent.com/91901282/212570784-5ebe6b46-d56c-4a08-85c3-5a5f9bbf56ae.mp4
-
