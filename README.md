@@ -1,32 +1,54 @@
-# Lambda-NFA-to-DFA
+### Formal Languages and Automata theory :computer_mouse:
+# Lambda NFA to DFA visualizer
 
-Fișierul de intrare se numește "date.in". Datele trebuie să fie de forma:
+**Assignment**: Write an algorithm that has as input a non-deterministic finite automaton with some λ-transitions. Display the finite deterministic automaton resulting from the application of the conversion algorithm on the automaton given as input. 
 
-Număr stări, număr tranziții
+The symbol for lambda is #, therefore it cannot be used as a transition symbol with another meaning.
 
-tranziții (de forma stare inițială, stare finală, simbol tranziție)
+When running the code, a folder with images capturing the step-by-step transitions will be created, and in the folder where main.py is found, a video called 'videoclip.avi' will be saved, which represents a slideshow with all the generated images.
 
-stare inițială
+## How to run 
+In order to run this program, you will have to install some packages:
 
-număr stări finale, stări finale
+``` python
+pip install opencv-python
+```
 
-Exemplu:</br>
-11 12 </br>
-0 1 # </br>
-1 2 # </br>
-2 3 a </br>
-3 6 # </br>
-6 7 # </br>
-7 8 a </br>
-8 9 b </br>
-9 10 b </br>
-1 4 # </br>
-4 5 b </br>
-5 6 # </br>
-0 7 # </br>
-0 </br>
-1 10 </br>
+## How to write the input
+We read from file date.in:
 
-Simbol pentru lambda este #, în consecință acesta nu poate fi folosit ca simbol de tranziție cu altă semnificație.
+n (number of states), m (number of transition)
 
-La rularea codului se va creea un folder cu imagini ce surprind tranzițiile pas cu pas, iar în folderul în care se găsește main.py se va salva și un videoclip cu denumirea 'videoclip.avi' ce reprezintă un slideshow cu toate imaginile generate.
+m transition (start node, destination node, transition)
+
+source node
+
+number of final nodes, final nodes
+
+number of strings
+
+the strings.
+
+> _Example_
+
+_Input_
+``` python
+11 12
+0 1 #
+1 2 #
+2 3 a
+3 6 #
+6 7 #
+7 8 a
+8 9 b
+9 10 b
+1 4 #
+4 5 b
+5 6 #
+0 7 #
+0
+1 10
+```
+
+_Output_
+``` python
