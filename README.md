@@ -26,10 +26,6 @@ source node
 
 number of final nodes, final nodes
 
-number of strings
-
-the strings.
-
 > _Example_
 
 _Input_
